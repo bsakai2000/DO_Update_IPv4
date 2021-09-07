@@ -2,7 +2,7 @@
 
 import requests
 
-# Must define a DigitalOcean token (do_token) and a domain name (domain_name)
+# Must define a DigitalOcean token (do_token), the subdomain to modify (subdomain) and a domain name (domain_name)
 import creds
 
 # API to use
@@ -23,7 +23,7 @@ def get_current_record():
 
     # Filter by subdomain
     records = do_a_record.json()['domain_records']
-    records = filter(lambda record : record['name'] == '@', records)
+    records = filter(lambda record : record['name'] == creds.subdomain, records)
     records = list(records)
 
     # Return the first relevant record
