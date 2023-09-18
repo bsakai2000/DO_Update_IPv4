@@ -38,7 +38,7 @@ def set_record(record_id, ipv4):
     # Set the data to the new IP address
     payload = { 'type' : 'A', 'data' : ipv4 }
     # Send the update request
-    set_record = requests.patch(api + '/v2/domains/' + creds.domain_name + '/records/' + record_id, data = payload, headers = headers)
+    set_record = requests.patch(api + '/v2/domains/' + creds.domain_name + '/records/' + record_id, json = payload, headers = headers)
     # If we don't have a 200, fail
     if set_record.status_code != 200:
         print('Failed to update record')
